@@ -1,4 +1,4 @@
-from pretty_polly.abstract import make_design
+from pretty_poly.abstract import make_design
 
 
 def test_simple_tiling():
