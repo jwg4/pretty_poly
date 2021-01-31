@@ -1,2 +1,6 @@
+from .tiling import Tiling
+
+
 def make_design(tiles):
-    return [], [], [], []
+    tiling = Tiling(tiles)
+    return tiling.abstract()
