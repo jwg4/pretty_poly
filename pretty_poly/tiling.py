@@ -72,9 +72,21 @@ class Tiling(object):
             [0 for i in range(self.min_x - 1, self.max_x + 1)]
             for j in range(self.min_y - 1, self.max_y + 1)
         ]
+
+        for i, row in enumerate(self.h):
+            for j, bar in enumerate(row):
+                if bar:
+                    nodes[i][j] += 3
+                    nodes[i+1][j] += 1
+
+        for i, row in enumerate(self.v):
+            for j, bar in enumerate(row):
+                if bar:
+                    nodes[i][j] += 2
+                    nodes[i][j+1] += 4
         
         return nodes
             
     def abstract(self):
-        h, v = self.calculate_tiling()
-        return self.faces(), v, h, self.nodes()
+        self.h, self.v = self.calculate_tiling()
+        return self.faces(), self.v, self.h, self.nodes()

@@ -19,6 +19,17 @@ def test_simple_tiling():
     ]
 
 
+def test_simple_tiling_check_nodes():
+    logging.basicConfig(level=logging.DEBUG)
+    faces, bars, lines, nodes = make_design(TILES)
+    assert nodes == [
+        [6, 10, 14, 12],
+        [5, 6, 13, 5],
+        [5, 7, 9, 5],
+        [3, 11, 10, 9]
+    ]
+
+
 def test_simple_tiling_check_size():
     logging.basicConfig(level=logging.DEBUG)
     faces, bars, lines, nodes = make_design(TILES)
