@@ -1,7 +1,12 @@
+import logging
+
+
 class Tiling(object):
     def __init__(self, tiles):
+        logging.debug("Initializing tiling - tiles: %s" % (tiles, ))
         self.tiles = tiles
-        self.squares = [sq for tile in tiles for sq in tiles]
+        self.squares = [sq for tile in tiles for sq in tile]
+        logging.debug("Initializing tiling - squares: %s" % (self.squares, ))
         self.min_x = min(x for x, y in self.squares)
         self.min_y = min(y for x, y in self.squares)
         self.max_x = max(x for x, y in self.squares)

@@ -4,7 +4,7 @@ import pytest
 
 
 def test():
-    pytest.main()
+    pytest.main(["-s"])
 
 
 def run_doctest():
