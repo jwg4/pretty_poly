@@ -73,17 +73,17 @@ class Tiling(object):
             for j in range(self.min_y - 1, self.max_y + 1)
         ]
 
-        for i, row in enumerate(self.h):
-            for j, bar in enumerate(row):
-                if bar:
-                    nodes[i][j] += 3
-                    nodes[i+1][j] += 1
-
         for i, row in enumerate(self.v):
             for j, bar in enumerate(row):
                 if bar:
+                    nodes[i][j] += 4
+                    nodes[i+1][j] += 1
+
+        for i, row in enumerate(self.h):
+            for j, bar in enumerate(row):
+                if bar:
                     nodes[i][j] += 2
-                    nodes[i][j+1] += 4
+                    nodes[i][j+1] += 8
         
         return nodes
             
