@@ -57,10 +57,16 @@ class Tiling(object):
 
     def faces(self):
         faces = [
-            [0 for i in range(self.min_x, self.max_x + 1)]
+            [-1 for i in range(self.min_x, self.max_x + 1)]
             for j in range(self.min_y, self.max_y + 1)
         ]
+        
+        for i, tile in enumerate(self.tiles):
+            for sq in tile:
+                faces[sq[1]][sq[0]] = i
 
+        return faces
+            
     def abstract(self):
         h, v = self.calculate_tiling()
         return self.faces(), v, h, []
