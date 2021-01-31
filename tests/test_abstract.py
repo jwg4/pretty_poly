@@ -3,15 +3,16 @@ import logging
 from pretty_poly.abstract import make_design
 
 
+TILES = [
+    [(0, 0), (0, 1), (0, 2), (1, 0)],
+    [(2, 2), (2, 1), (2, 0), (1, 2)]
+]
+
+
 def test_simple_tiling():
     logging.basicConfig(level=logging.DEBUG)
-    tiles = [
-        [(0, 0), (0, 1), (0, 2), (1, 0)],
-        [(2, 2), (2, 1), (2, 0), (1, 2)]
-    ]
-    cells, bars, lines, nodes = make_design(tiles)
-    assert len(cells) == 3
-    assert cells == [
+    faces, bars, lines, nodes = make_design(TILES)
+    assert faces == [
         [0, 0, 1],
         [0, -1, 1],
         [0, 1, 1],
