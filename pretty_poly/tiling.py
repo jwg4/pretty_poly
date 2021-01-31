@@ -66,7 +66,15 @@ class Tiling(object):
                 faces[sq[1]][sq[0]] = i
 
         return faces
+
+    def nodes(self):
+        nodes = [
+            [0 for i in range(self.min_x - 1, self.max_x + 1)]
+            for j in range(self.min_y - 1, self.max_y + 1)
+        ]
+        
+        return nodes
             
     def abstract(self):
         h, v = self.calculate_tiling()
-        return self.faces(), v, h, []
+        return self.faces(), v, h, self.nodes()

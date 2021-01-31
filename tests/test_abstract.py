@@ -17,3 +17,18 @@ def test_simple_tiling():
         [0, -1, 1],
         [0, 1, 1],
     ]
+
+
+def test_simple_tiling_check_size():
+    logging.basicConfig(level=logging.DEBUG)
+    faces, bars, lines, nodes = make_design(TILES)
+    x, y = len(faces[0]), len(faces)
+
+    assert len(bars[0]) == x + 1 
+    assert len(bars) == y
+
+    assert len(lines[0]) == x
+    assert len(lines) == y + 1
+
+    assert len(nodes[0]) == x + 1 
+    assert len(nodes) == y + 1
