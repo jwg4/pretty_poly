@@ -1,5 +1,5 @@
 class Tiling(object):
-    def __init__(self, tiles)
+    def __init__(self, tiles):
         self.tiles = tiles
         self.squares = [sq for tile in tiles for sq in tiles]
         self.min_x = min(x for x, y in self.squares)
@@ -54,6 +54,6 @@ class Tiling(object):
         h, v = self.calculate_tiling(tiling)
         faces = [
             [0 for i in range(self.min_x, self.max_x + 1)]
-            for j in range(self.min_y, self.max_y + 1
+            for j in range(self.min_y, self.max_y + 1)
         ]
         return faces, v, h, []
