@@ -55,10 +55,12 @@ class Tiling(object):
         
         return h, v
 
-    def abstract(self):
-        h, v = self.calculate_tiling()
+    def faces(self):
         faces = [
             [0 for i in range(self.min_x, self.max_x + 1)]
             for j in range(self.min_y, self.max_y + 1)
         ]
-        return faces, v, h, []
+
+    def abstract(self):
+        h, v = self.calculate_tiling()
+        return self.faces(), v, h, []
