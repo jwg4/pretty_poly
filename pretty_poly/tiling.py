@@ -38,11 +38,11 @@ class Tiling(object):
 
         return [(x in lines) for x in range(self.min_x, max(lines) + 1)]
 
-    def calculate_tiling(self, tiling):
+    def calculate_tiling(self):
         h = [self.make_base_h_row(i) for i in range(self.min_y, self.max_y + 2)]
         v = [self.make_base_v_row(i) for i in range(self.min_y, self.max_y + 1)]
 
-        for tile in tiling:
+        for tile in self.tiles:
             for sq_a in tile:
                 for sq_b in tile:
                     a, b = sorted([sq_a, sq_b])
@@ -56,7 +56,7 @@ class Tiling(object):
         return h, v
 
     def abstract(self):
-        h, v = self.calculate_tiling(tiling)
+        h, v = self.calculate_tiling()
         faces = [
             [0 for i in range(self.min_x, self.max_x + 1)]
             for j in range(self.min_y, self.max_y + 1)
