@@ -11,15 +11,15 @@ def gen_ascii(tiling):
         node_chars = ["+" if node else " " for node in nodes[i]]
         v_chars = ["-" if h else " " for h in hlines[i]]
         row = alternate(node_chars, v_chars)
-        yield "".join(row)
+        yield "".join(row).rstrip()
 
-        yield " ".join(["|" if v else " " for v in vlines[i]])
+        yield " ".join(["|" if v else " " for v in vlines[i]]).rstrip()
 
     i = len(vlines)     
     node_chars = ["+" if node else " " for node in nodes[i]]
     v_chars = ["-" if h else " " for h in hlines[i]]
     row = alternate(node_chars, v_chars)
-    yield "".join(row)
+    yield "".join(row).rstrip()
 
 
 def alternate(first, second):
