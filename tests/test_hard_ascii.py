@@ -1,3 +1,6 @@
+from pretty_poly import make_ascii
+
+
 TILING = [
     [(20, 0), (21, 1), (21, 0), (22, 0)],
     [(0, 0), (1, 1), (1, 0), (2, 0)],
@@ -117,3 +120,8 @@ DISPLAY = """
 | |     | |     | |     | |     | |     | |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ + +
 """
+
+
+def test_larger_tiling_to_ascii():
+    actual = make_ascii(TILING)
+    assert actual == DISPLAY
