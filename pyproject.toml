@@ -13,6 +13,7 @@ pytest = "^6.2.2"
 
 [tool.poetry.scripts]
 test = 'run_tests:test'
+doctest = 'run_tests:run_doctest'
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
