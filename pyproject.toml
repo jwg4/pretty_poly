@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pretty_poly"
-version = "0.2.0-alpha.1"
+version = "0.2.0-alpha.2"
 description = "Display polyominos and polyomino tilings in various pretty formats."
 authors = ["Jack Grahl <jack.grahl@gmail.com>"]
 license = "MIT"
