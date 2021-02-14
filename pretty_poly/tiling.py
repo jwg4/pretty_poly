@@ -66,7 +66,7 @@ class Tiling(object):
         
         for i, tile in enumerate(self.tiles):
             for sq in tile:
-                faces[sq[1]][sq[0]] = i
+                faces[sq[1]-self.min_y][sq[0]-self.min_x] = i
 
 
         for row in faces:
