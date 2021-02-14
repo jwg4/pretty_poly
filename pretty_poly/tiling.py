@@ -68,6 +68,13 @@ class Tiling(object):
             for sq in tile:
                 faces[sq[1]][sq[0]] = i
 
+
+        for row in faces:
+            x = 0
+            while row[x] == -1:
+                row[x] = -2
+                x = x + 1
+
         return faces
 
     def nodes(self):

@@ -13,7 +13,7 @@ def gen_ascii(tiling):
         row = alternate(node_chars, h_chars)
         yield "".join(row).rstrip()
 
-        face_chars = [" " for face in faces[i]]
+        face_chars = ["X" if face == -1 else " " for face in faces[i]]
         v_chars = ["|" if v else " " for v in vlines[i]]
         row = alternate(v_chars, face_chars)
         yield "".join(row).rstrip()
