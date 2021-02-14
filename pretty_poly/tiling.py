@@ -55,9 +55,12 @@ class Tiling(object):
         
         return h, v
 
+    def row_max(self, i):
+        return max(sq[0] for sq in self.squares if sq[1] == i)
+
     def faces(self):
         faces = [
-            [-1 for i in range(self.min_x, self.max_x + 1)]
+            [-1 for i in range(self.min_x, self.row_max(j)+1)]
             for j in range(self.min_y, self.max_y + 1)
         ]
         

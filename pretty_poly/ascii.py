@@ -9,20 +9,24 @@ def gen_ascii(tiling):
     faces, vlines, hlines, nodes = make_design(tiling)
     for i in range(0, len(vlines)):
         node_chars = ["+" if node else " " for node in nodes[i]]
-        v_chars = ["-" if h else " " for h in hlines[i]]
-        row = alternate(node_chars, v_chars)
+        h_chars = ["-" if h else " " for h in hlines[i]]
+        row = alternate(node_chars, h_chars)
         yield "".join(row).rstrip()
 
-        yield " ".join(["|" if v else " " for v in vlines[i]]).rstrip()
+        face_chars = [" " for face in faces[i]]
+        v_chars = ["|" if v else " " for v in vlines[i]]
+        row = alternate(v_chars, face_chars)
+        yield "".join(row).rstrip()
 
     i = len(vlines)     
     node_chars = ["+" if node else " " for node in nodes[i]]
-    v_chars = ["-" if h else " " for h in hlines[i]]
-    row = alternate(node_chars, v_chars)
+    h_chars = ["-" if h else " " for h in hlines[i]]
+    row = alternate(node_chars, h_chars)
     yield "".join(row).rstrip()
 
 
 def alternate(first, second):
+    assert len(second) in [len(first) - 1, len(first)]
     n = len(first) + len(second)
     for i in range(0, n):
         if i % 2 == 0:
