@@ -68,14 +68,40 @@ class Tiling(object):
             for sq in tile:
                 faces[sq[1]-self.min_y][sq[0]-self.min_x] = i
 
-
-        for row in faces:
-            x = 0
-            while row[x] == -1:
-                row[x] = -2
-                x = x + 1
+        for x, y in self.open_blanks():
+            faces[y - self.min_y][x - self.min_x] = -2
 
         return faces
+
+    def open_blanks(self):
+        s = set()
+        sqs = set(self.squares)
+        queue = (
+            [ (x, self.min_y) for x in range(self.min_x, self.row_max(self.min_y) + 1)]
+            + [ (self.min_x, y) for y in range(self.min_y + 1, self.max_y) ]
+            + [ (x, y) for y in range(self.min_y + 1, self.max_y) for x in range(min(self.row_max(y-1), self.row_max(y+1)), self.row_max(y) + 1) ]
+            + [ (x, self.max_y) for x in range(self.min_x, self.row_max(self.max_y) + 1)]
+        )
+
+        for sq in queue:
+            if sq in sqs:
+                continue
+            s.add(sq)
+            for x, y in self.neighbours(sq):
+                if self.min_y <= y <= self.max_y:
+                    if self.min_x <= x <= self.row_max(y):
+                        if (x, y) not in s:
+                            queue.append((x, y))
+                
+        return s
+
+    @staticmethod
+    def neighbours(sq):
+        x, y = sq
+        yield (x - 1, y) 
+        yield (x + 1, y) 
+        yield (x, y - 1) 
+        yield (x, y + 1) 
 
     def nodes(self):
         nodes = [
