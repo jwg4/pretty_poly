@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pretty_poly"
-version = "0.1.1"
+version = "0.2.0-alpha.3"
 description = "Display polyominos and polyomino tilings in various pretty formats."
 authors = ["Jack Grahl <jack.grahl@gmail.com>"]
 license = "MIT"
@@ -13,6 +13,7 @@ pytest = "^6.2.2"
 
 [tool.poetry.scripts]
 test = 'run_tests:test'
+doctest = 'run_tests:run_doctest'
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
