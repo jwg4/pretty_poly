@@ -7,4 +7,4 @@ def test_basic_png_right_size():
         [(1, 1), (1, 0)]
     ]
     image = make_png(tiling)
-    assert image.size = 13, 13
+    assert image.size == 13, 13
