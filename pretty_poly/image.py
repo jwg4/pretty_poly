@@ -10,6 +10,7 @@ def random_color():
 def make_colored_blocks(tiling, scale=10):
     grid, _, _, _ = make_design(tiling)
     d = dict()
+    r = dict()
     color_data = []
     palette = []
     for r in grid:
@@ -17,9 +18,10 @@ def make_colored_blocks(tiling, scale=10):
         for c in r:
             if c not in d:
                 d[c] = random_color()
+                palette.append(d[c])
+                r[c] = len(palette)
             for i in range(scale):
-                out_row.append(len(palette))
-            palette.append(d[c])
+                out_row.append(r[c])
         for i in range(scale):
             color_data.append(out_row)
     return color_data, palette
