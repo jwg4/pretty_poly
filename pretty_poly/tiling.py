@@ -66,7 +66,7 @@ class Tiling(object):
             ]
         else:
             faces = [
-                [-1 for i in range(self.min_x, self.max_x+1)]
+                [-2 for i in range(self.min_x, self.max_x+1)]
                 for j in range(self.min_y, self.max_y + 1)
             ]
         
