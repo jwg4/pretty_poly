@@ -9,4 +9,4 @@ def test_make_colored_blocks():
     color_data, palette = make_colored_blocks(tiling)
     assert len(color_data) == 30
     assert len(color_data[0]) == 40
-    assert len(palette) == 2, str(palette)
+    assert len(palette) == 3, str(palette)

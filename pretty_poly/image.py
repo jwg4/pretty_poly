@@ -8,20 +8,20 @@ def random_color():
 
 
 def make_colored_blocks(tiling, scale=10):
-    grid, _, _, _ = make_design(tiling)
-    d = dict()
-    r = dict()
+    grid, _, _, _ = make_design(tiling, False)
+    color_lookup = dict()
+    palette_lookup = dict()
     color_data = []
     palette = []
     for r in grid:
         out_row = []
         for c in r:
-            if c not in d:
-                d[c] = random_color()
-                palette.append(d[c])
-                r[c] = len(palette)
+            if c not in color_lookup:
+                color_lookup[c] = random_color()
+                palette.append(color_lookup[c])
+                palette_lookup[c] = len(palette)
             for i in range(scale):
-                out_row.append(r[c])
+                out_row.append(palette_lookup[c])
         for i in range(scale):
             color_data.append(out_row)
     return color_data, palette
