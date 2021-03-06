@@ -19,3 +19,4 @@ def test_large_nonrectangular_tiling():
     assert len(color_data) == 140
     assert len(color_data[0]) == 130
     assert len(palette) == 43, str(palette)
+    assert (0, 0, 0) in palette

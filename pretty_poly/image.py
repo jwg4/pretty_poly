@@ -9,10 +9,10 @@ def random_color():
 
 def make_colored_blocks(tiling, scale=10):
     grid, _, _, _ = make_design(tiling, False)
-    color_lookup = dict()
-    palette_lookup = dict()
+    color_lookup = {-2: (0, 0, 0)}
+    palette_lookup = {-2: 0}
     color_data = []
-    palette = []
+    palette = [(0, 0, 0)]
     for r in grid:
         out_row = []
         for c in r:
