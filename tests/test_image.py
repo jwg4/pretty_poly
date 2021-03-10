@@ -1,4 +1,4 @@
-from pretty_poly.image import make_colored_blocks, make_black_lines
+from pretty_poly.image import make_colored_blocks, make_lines
 
 from examples.right_12 import TILING as RIGHT_12
 
@@ -27,7 +27,7 @@ def test_make_black_lines():
         [(0, 0), (0, 1), (0, 2), (1, 1)],
         [(1, 0), (2, 0), (2, 1), (3, 0)]
     ]
-    color_data, palette = make_colored_blocks(tiling)
+    color_data, palette = make_lines(tiling)
     assert len(color_data) == 49
     assert len(color_data[0]) == 59
     assert len(palette) == 2, str(palette)
