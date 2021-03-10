@@ -15,6 +15,7 @@ pytest = "^6.2.2"
 [tool.poetry.scripts]
 test = 'run_tests:test'
 doctest = 'run_tests:run_doctest'
+examples = 'examples.make:write_examples'
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
