@@ -16,6 +16,12 @@ def _write_png(filename, writer, data):
 
 
 def write_colored_blocks_png(filename, tiling, scale=10):
-    data, palette = make_colored_blocks(tiling)
+    data, palette = make_colored_blocks(tiling, scale)
+    writer = _make_png_writer(data, palette)
+    _write_png(filename, writer, data)
+
+
+def write_lines_png(filename, tiling, scale=10, width=1):
+    data, palette = make_lines(tiling, scale, width)
     writer = _make_png_writer(data, palette)
     _write_png(filename, writer, data)
