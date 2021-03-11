@@ -32,7 +32,7 @@ def make_lines(tiling, scale=10, width=1):
     x, y = len(faces[0]), len(faces)
     sx, sy = (x + 2) * scale - width, (y + 2) * scale - width
     color_data = [[0 for i in range(0, sx)] for j in range(0, sy)]
-    palette = [(0, 0, 0), (255, 255, 255)]
+    palette = [(255, 255, 255), (0, 0, 0)]
     for i, row in enumerate(vertical):
         for j, value in enumerate(row):
             if value:
