@@ -17,3 +17,14 @@ This is a Python package for displaying polyomino tilings, expressed as lists of
 +-+-+-+
 
 ```
+
+## How to cite this code:
+```
+@misc{pretty_poly,
+  author = {Jack Grahl},
+  title = {pretty_poly - a package for displaying polyomino tilings},
+  year = {2021},
+  howpublished = {\url{https://github.com/jwg4/pretty_poly}},
+  commit = {...}
+}
+```
