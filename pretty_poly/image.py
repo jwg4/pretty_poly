@@ -36,13 +36,13 @@ def make_lines(tiling, scale=10, width=1):
     for i, row in enumerate(vertical):
         for j, value in enumerate(row):
             if value:
-                for z in range(0, scale):
+                for z in range(0, scale - width):
                     for w in range(0, width):
                         color_data[(i + 1) * scale + z][(j + 1) * scale + w - 1] = 1
     for i, row in enumerate(horizontal):
         for j, value in enumerate(row):
             if value:
-                for z in range(0, scale):
+                for z in range(0, scale - width):
                     for w in range(0, width):
                         color_data[(i + 1) * scale + w - 1][(j + 1) * scale + z] = 1
 
