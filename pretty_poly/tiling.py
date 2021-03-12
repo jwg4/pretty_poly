@@ -3,10 +3,10 @@ import logging
 
 class Tiling(object):
     def __init__(self, tiles):
-        logging.debug("Initializing tiling - tiles: %s" % (tiles, ))
+        logging.debug("Initializing tiling - tiles: %s" % (tiles,))
         self.tiles = tiles
         self.squares = [sq for tile in tiles for sq in tile]
-        logging.debug("Initializing tiling - squares: %s" % (self.squares, ))
+        logging.debug("Initializing tiling - squares: %s" % (self.squares,))
         self.min_x = min(x for x, y in self.squares)
         self.min_y = min(y for x, y in self.squares)
         self.max_x = max(x for x, y in self.squares)
@@ -52,7 +52,7 @@ class Tiling(object):
                         v[ay][bx] = False
                     if (ax == bx) and (ay + 1 == by):
                         h[by][ax] = False
-        
+
         return h, v
 
     def row_max(self, i):
@@ -61,18 +61,18 @@ class Tiling(object):
     def faces(self, ragged):
         if ragged:
             faces = [
-                [-1 for i in range(self.min_x, self.row_max(j)+1)]
+                [-1 for i in range(self.min_x, self.row_max(j) + 1)]
                 for j in range(self.min_y, self.max_y + 1)
             ]
         else:
             faces = [
-                [-2 for i in range(self.min_x, self.max_x+1)]
+                [-2 for i in range(self.min_x, self.max_x + 1)]
                 for j in range(self.min_y, self.max_y + 1)
             ]
-        
+
         for i, tile in enumerate(self.tiles):
             for sq in tile:
-                faces[sq[1]-self.min_y][sq[0]-self.min_x] = i
+                faces[sq[1] - self.min_y][sq[0] - self.min_x] = i
 
         for x, y in self.open_blanks():
             faces[y - self.min_y][x - self.min_x] = -2
@@ -83,10 +83,16 @@ class Tiling(object):
         s = set()
         sqs = set(self.squares)
         queue = (
-            [ (x, self.min_y) for x in range(self.min_x, self.row_max(self.min_y) + 1)]
-            + [ (self.min_x, y) for y in range(self.min_y + 1, self.max_y) ]
-            + [ (x, y) for y in range(self.min_y + 1, self.max_y) for x in range(min(self.row_max(y-1), self.row_max(y+1)), self.row_max(y) + 1) ]
-            + [ (x, self.max_y) for x in range(self.min_x, self.row_max(self.max_y) + 1)]
+            [(x, self.min_y) for x in range(self.min_x, self.row_max(self.min_y) + 1)]
+            + [(self.min_x, y) for y in range(self.min_y + 1, self.max_y)]
+            + [
+                (x, y)
+                for y in range(self.min_y + 1, self.max_y)
+                for x in range(
+                    min(self.row_max(y - 1), self.row_max(y + 1)), self.row_max(y) + 1
+                )
+            ]
+            + [(x, self.max_y) for x in range(self.min_x, self.row_max(self.max_y) + 1)]
         )
 
         for sq in queue:
@@ -98,16 +104,16 @@ class Tiling(object):
                     if self.min_x <= x <= self.row_max(y):
                         if (x, y) not in s:
                             queue.append((x, y))
-                
+
         return s
 
     @staticmethod
     def neighbours(sq):
         x, y = sq
-        yield (x - 1, y) 
-        yield (x + 1, y) 
-        yield (x, y - 1) 
-        yield (x, y + 1) 
+        yield (x - 1, y)
+        yield (x + 1, y)
+        yield (x, y - 1)
+        yield (x, y + 1)
 
     def nodes(self):
         nodes = [
@@ -119,16 +125,16 @@ class Tiling(object):
             for j, bar in enumerate(row):
                 if bar:
                     nodes[i][j] += 4
-                    nodes[i+1][j] += 1
+                    nodes[i + 1][j] += 1
 
         for i, row in enumerate(self.h):
             for j, bar in enumerate(row):
                 if bar:
                     nodes[i][j] += 2
-                    nodes[i][j+1] += 8
-        
+                    nodes[i][j + 1] += 8
+
         return nodes
-            
+
     def abstract(self, ragged=True):
         self.h, self.v = self.calculate_tiling()
         return self.faces(ragged), self.v, self.h, self.nodes()

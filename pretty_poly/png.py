@@ -11,7 +11,7 @@ def _make_png_writer(data, palette):
 
 
 def _write_png(filename, writer, data):
-    with open(filename, 'wb') as f:
+    with open(filename, "wb") as f:
         writer.write(f, data)
 
 
