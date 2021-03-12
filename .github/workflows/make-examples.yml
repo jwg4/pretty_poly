@@ -1,0 +1,33 @@
+name: Make example images
+on:
+  push:
+    branches: 
+      - main
+      - publish_example_images
+
+jobs:
+  testing:
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.7, 3.8]
+        os: [ubuntu-18.04, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install poetry
+        run: pip install poetry
+      - name: Install requirements
+        run: poetry install
+      - name: Test package
+        run: poetry run examples
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish-branch: main
+          destination_dir: docs
+          publish_dir: ./examples/images
