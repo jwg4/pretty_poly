@@ -1,0 +1,28 @@
+name: Make example images
+on:
+  push:
+    branches: 
+      - main
+
+jobs:
+  testing:
+    strategy:
+      fail-fast: false
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - name: Install poetry
+        run: pip install poetry
+      - name: Install requirements
+        run: poetry install
+      - name: Test package
+        run: poetry run examples
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          destination_dir: docs
+          publish_dir: ./examples/images
