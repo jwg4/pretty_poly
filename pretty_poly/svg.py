@@ -21,6 +21,8 @@ def write_colored_blocks_svg(filename, tiling, scale=10):
     dwg = svgwrite.Drawing(filename, size=size)
     for y, row in enumerate(faces):
         for x, sq in enumerate(row):
+            if sq < 0:
+                continue
             color = svg_color(palette[sq])
             square = dwg.rect((x * scale, y * scale), (scale, scale), fill=color)
             dwg.add(square)
