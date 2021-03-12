@@ -18,9 +18,9 @@ def write_colored_blocks_svg(filename, tiling, scale=10):
     faces, _, _, _ = make_design(tiling)
     data, palette = make_colored_blocks(tiling, scale)
     size = len(data[0]), len(data)
-    dwg = svgwrite.Drawing(filename, size=data)
-    for row, y in enumerate(faces):
-        for sq, x in enumerate(row):
+    dwg = svgwrite.Drawing(filename, size=size)
+    for y, row in enumerate(faces):
+        for x, sq in enumerate(row):
             color = svg_color(palette[sq])
             square = dwg.rect((x * scale, y * scale), (scale, scale), fill=color)
             dwg.add(square)
