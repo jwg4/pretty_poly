@@ -55,5 +55,15 @@ def write_lines_svg(filename, tiling, scale=10, width=1):
                     (x, y), (scale - width, width), fill=color
                 )
                 dwg.add(hline)
+    for i, row in enumerate(nodes):
+        for j, value in enumerate(row):
+            if value:
+                x = j * scale
+                y = i * scale
+                color = svg_color(palette[1])
+                hline = dwg.rect(
+                    (x, y), (width, width), fill=color
+                )
+                dwg.add(hline)
 
     dwg.save()
