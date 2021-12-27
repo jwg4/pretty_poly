@@ -28,3 +28,32 @@ def write_colored_blocks_svg(filename, tiling, scale=10):
             dwg.add(square)
 
     dwg.save()
+
+
+def write_lines_svg(filename, tiling, scale=10, width=1):
+    faces, vertical, horizontal, nodes = make_design(tiling)
+    data, palette = make_lines(tiling, scale, width)
+    size = len(data[0]), len(data)
+    dwg = svgwrite.Drawing(filename, size=size)
+    for i, row in enumerate(vertical):
+        for j, value in enumerate(row):
+            if value:
+                x = j * scale
+                y = i * scale + width
+                color = svg_color(palette[1])
+                vline = dwg.rect(
+                    (x, y), (width, scale - width), fill=color
+                )
+                dwg.add(vline)
+    for i, row in enumerate(horizontal):
+        for j, value in enumerate(row):
+            if value:
+                x = j * scale + width
+                y = i * scale
+                color = svg_color(palette[1])
+                hline = dwg.rect(
+                    (x, y), (scale - width, width), fill=color
+                )
+                dwg.add(hline)
+
+    dwg.save()
