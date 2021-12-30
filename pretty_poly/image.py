@@ -4,7 +4,10 @@ from .abstract import make_design
 
 
 def random_color():
-    return (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+    r,g,b = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+    if max(r, g, b) < 20:
+        return random_color()
+    return r, g, b
 
 
 def make_colored_blocks(tiling, scale=10):
