@@ -29,8 +29,8 @@ def test_large_nonrectangular_tiling():
 def test_thick_lines_and_margins():
     f, filename = tempfile.mkstemp(suffix=".png")
     size, thickness = 10, 3
-    expected_width = 4 * size + 3 * thickness
-    expected_height = 4 * size + 3 * thickness
+    expected_width = 4 * size + thickness
+    expected_height = 4 * size + thickness
     tiles = [[(0, 0), (0, 1), (1, 0)], [(1, 1)]]
     write_lines_png(filename, tiles, size, thickness)
     r = png.Reader(filename)
