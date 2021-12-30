@@ -36,3 +36,31 @@ def test_make_black_lines_with_thickness():
     assert len(color_data) == expected_height
     assert len(color_data[0]) == expected_width
     assert len(palette) == 2, str(palette)
+
+
+def test_make_black_lines_with_thickness_check_nodes():
+    size, thickness = 10, 3
+    expected_width = 4 * size + thickness
+    expected_height = 4 * size + thickness
+    tiling = [[(0, 0), (0, 1), (1, 0)], [(1, 1)]]
+    color_data, palette = make_lines(tiling, size, thickness)
+    for i in [size, size * 2, size * 3]:
+        for j in [size, size * 2, size * 3]:
+            assert color_data[i][j] == 1
+    indices = [size - 1, size + thickness, size * 2 - 1, size * 2 + thickness, size * 3 - 1, size * 3 + thickness]
+    for i in indices:
+        for j in indices:
+            assert color_data[i][j] == 0
+
+
+def test_make_black_lines_with_thickness_check_strip():
+    size, thickness = 10, 3
+    expected_width = 4 * size + thickness
+    expected_height = 4 * size + thickness
+    tiling = [[(0, 0), (0, 1), (1, 0)], [(1, 1)]]
+    color_data, palette = make_lines(tiling, size, thickness)
+    margin = [0] * size
+    line = [1] * thickness
+    no_line = [0] * thickness
+    square = [0] * (size - thickness)
+    assert color_data[size + thickness] == margin + line + square + no_line + square + line + margin
