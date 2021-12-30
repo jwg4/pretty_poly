@@ -22,6 +22,17 @@ def test_large_nonrectangular_tiling():
 def test_make_black_lines():
     tiling = [[(0, 0), (0, 1), (0, 2), (1, 1)], [(1, 0), (2, 0), (2, 1), (3, 0)]]
     color_data, palette = make_lines(tiling)
-    assert len(color_data) == 49
-    assert len(color_data[0]) == 59
+    assert len(color_data) == 51
+    assert len(color_data[0]) == 61
+    assert len(palette) == 2, str(palette)
+
+
+def test_make_black_lines_with_thickness():
+    size, thickness = 10, 3
+    expected_width = 4 * size + thickness
+    expected_height = 4 * size + thickness
+    tiling = [[(0, 0), (0, 1), (1, 0)], [(1, 1)]]
+    color_data, palette = make_lines(tiling, size, thickness)
+    assert len(color_data) == expected_height
+    assert len(color_data[0]) == expected_width
     assert len(palette) == 2, str(palette)
