@@ -2,7 +2,7 @@ import tempfile
 
 import png
 
-from pretty_poly.png import write_colored_blocks_png
+from pretty_poly.png import write_colored_blocks_png, write_lines_png
 
 from examples.right_12 import TILING as RIGHT_12
 
