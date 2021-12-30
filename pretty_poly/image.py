@@ -33,7 +33,7 @@ def make_colored_blocks(tiling, scale=10):
 def make_lines(tiling, scale=10, width=1):
     faces, vertical, horizontal, nodes = make_design(tiling, False)
     x, y = len(faces[0]), len(faces)
-    sx, sy = (x + 2) * scale - width, (y + 2) * scale - width
+    sx, sy = (x + 2) * scale + width, (y + 2) * scale + width
     color_data = [[0 for i in range(0, sx)] for j in range(0, sy)]
     palette = [(255, 255, 255), (0, 0, 0)]
     for i, row in enumerate(vertical):
