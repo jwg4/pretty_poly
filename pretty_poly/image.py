@@ -41,23 +41,23 @@ def make_lines(tiling, scale=10, width=1):
             if value:
                 for z in range(0, scale - width):
                     for w in range(0, width):
-                        color_data[(i + 1) * scale + width - 1 + z][
-                            (j + 1) * scale + w - 1
+                        color_data[(i + 1) * scale + width + z][
+                            (j + 1) * scale + w
                         ] = 1
     for i, row in enumerate(horizontal):
         for j, value in enumerate(row):
             if value:
                 for z in range(0, scale - width):
                     for w in range(0, width):
-                        color_data[(i + 1) * scale + w - 1][
-                            (j + 1) * scale + width - 1 + z
+                        color_data[(i + 1) * scale + w][
+                            (j + 1) * scale + width + z
                         ] = 1
     for i, row in enumerate(nodes):
         for j, value in enumerate(row):
             color = 1 if value else 0
             for z in range(0, width):
                 for w in range(0, width):
-                    color_data[(i + 1) * scale + w - 1][(j + 1) * scale + z - 1] = color
+                    color_data[(i + 1) * scale + w][(j + 1) * scale + z] = color
 
     return color_data, palette
 
